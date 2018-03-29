@@ -208,7 +208,7 @@ namespace Duke.Owin.VkontakteMiddleware
 
                 //public method which dont require token
                 string userInfoLink = GraphApiEndpoint + "users.get.xml" +
-                                      "?user_ids=" + Uri.EscapeDataString(userid) + 
+                                      "?user_id=" + Uri.EscapeDataString(userid) + 
                                       "&v="+ Uri.EscapeDataString(Options.Version)+
                                       "&fields=" + Uri.EscapeDataString("nickname,screen_name,photo_50,email");
 
@@ -218,7 +218,7 @@ namespace Duke.Owin.VkontakteMiddleware
                 XmlDocument UserInfoResponseXml = new XmlDocument();
                 UserInfoResponseXml.LoadXml(text);
 
-                var context = new VkAuthenticatedContext(Context, UserInfoResponseXml, accessToken, expires,email);
+                var context = new VkAuthenticatedContext(Context, UserInfoResponseXml, accessToken, expires, email);
                 context.Identity = new ClaimsIdentity(
                     Options.AuthenticationType,
                     ClaimsIdentity.DefaultNameClaimType,
