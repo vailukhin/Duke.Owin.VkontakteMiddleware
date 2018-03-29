@@ -24,7 +24,7 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
         /// <param name="userxml">The XML document with user info</param>
         /// <param name="accessToken">Access token</param>
         /// <param name="expires">Seconds until expiration</param>
-        public VkAuthenticatedContext(IOwinContext context, XmlDocument userxml, string accessToken, string expires)
+        public VkAuthenticatedContext(IOwinContext context, XmlDocument userxml, string accessToken, string expires, string email)
             : base(context)
         {
             UserXml = userxml;
@@ -41,7 +41,7 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
             LastName = TryGetValue("last_name");
             UserName = TryGetValue("screen_name");
             Nickname = TryGetValue("nickname");
-            Email = TryGetValue("email");
+            Email = email; // TryGetValue("email");
             Link = TryGetValue("photo_50");
 
         }
