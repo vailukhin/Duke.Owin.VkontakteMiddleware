@@ -244,6 +244,14 @@ namespace Duke.Owin.VkontakteMiddleware
                 {
                     context.Identity.AddClaim(new Claim(ClaimTypes.Email, email, XmlSchemaString, Options.AuthenticationType));
                 }
+                if (!string.IsNullOrEmpty(userid))
+                {
+                    context.Identity.AddClaim(new Claim("urn:vkontakte:id", userid, XmlSchemaString, Options.AuthenticationType));
+                }
+                if (!string.IsNullOrEmpty(accessToken))
+                {
+                    context.Identity.AddClaim(new Claim("urn:vkontakte:accesstoken", accessToken, XmlSchemaString, Options.AuthenticationType));
+                }
                 context.Properties = properties;
 
                 await Options.Provider.Authenticated(context);
